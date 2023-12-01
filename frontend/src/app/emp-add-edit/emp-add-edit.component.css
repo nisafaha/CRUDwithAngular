@@ -1,0 +1,19 @@
+.container {
+    width:auto;
+    height: auto;
+}
+
+.container h1 {
+    padding-top: 20px;
+}
+
+.col {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    display: flex;
+    flex: 1;
+    gap: 10px;
+}
