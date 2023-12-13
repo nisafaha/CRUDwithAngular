@@ -38,7 +38,7 @@ export class AppComponent{
   title = 'frontend';
 
 
-  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'age'];
+  displayedColumns: string[] = ['firstName', 'lastName', 'email', 'age', 'action'];
   dataSource!: MatTableDataSource<any>;
   // constructor(private _dialog: MatDialog/*, private _empService: EmployeeService*/) {}
   constructor(private _http: HttpClient, private _dialog: MatDialog) {}
@@ -72,4 +72,31 @@ export class AppComponent{
   //     error: console.log,
   //   });
   // }
+
+  deleteEmployee(id: number) {
+    this._http.delete(`http://localhost:3000/employees/${id}`).subscribe({
+      next: (res) => {
+        console.log(res);
+        location.reload();
+      },
+      error: console.log,
+    });
+  }
+
+  // editEmployee(id: number) {
+  //   const dialogRef = this._dialog.open(EmpAddEditComponent, {
+  //     data: { id },
+  //   });
+
+  //   dialogRef.afterClosed().subscribe((result) => {
+  //     console.log(`Dialog result: ${result}`);
+  //     location.reload();
+  //   });
+  // }
+
+  openEditDialog(data: any) {
+    this._dialog.open(EmpAddEditComponent, {
+      data,
+    });
+  }
 }
